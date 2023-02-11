@@ -139,7 +139,7 @@
   (let ((ary (gensym)) (foreign-type (gensym)))
    `(let* ((,ary ,text)
            (,len (length ,ary))
-           (,foreign-type (if (eq ,size 16) 'xcb-char-2b-t :uint8)))
+           (,foreign-type (if (eq ,size 16) '(:struct xcb-char-2b-t) :uint8)))
       (with-foreign-object (,ptr ,foreign-type ,len)
         (copy-array-to-foreign ,ptr ,len ,ary ,foreign-type
                                (lambda (ptr el)

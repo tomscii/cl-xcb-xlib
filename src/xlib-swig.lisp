@@ -3338,7 +3338,7 @@
 
 (cl:export '#.(custom-lispify "XDisplayString" 'function))
 
-(cffi:defcfun ("XDefaultColormap" #.(custom-lispify "XDefaultColormap" 'function)) :pointer
+(cffi:defcfun ("XDefaultColormap" #.(custom-lispify "XDefaultColormap" 'function)) :unsigned-long
   (arg0 :pointer)
   (arg1 :int))
 
