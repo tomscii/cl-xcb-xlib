@@ -49,7 +49,7 @@
 
 (define-attr-accessor window-all-event-masks all-event-masks)
 
-(stub (setf window-background) (background window))
+(define-attr-accessor window-background background :getter-p nil)
 
 (define-attr-accessor window-backing-pixel backing-pixel)
 (define-attr-accessor window-backing-planes backing-planes)
