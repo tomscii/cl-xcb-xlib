@@ -72,8 +72,7 @@
 (define-attr-accessor window-colormap-installed-p map-is-installed
     :setter-p nil)
 
-;; FIXME: once cursors are
-(stub (setf window-cursor) (cursor window))
+(define-attr-accessor window-cursor cursor :getter-p nil)
 
 (defun window-display (window)
   (%window-display window))

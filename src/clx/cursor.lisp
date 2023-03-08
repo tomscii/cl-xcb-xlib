@@ -22,9 +22,24 @@
                                    x y))
     cursor))
 
-;; FIXME: when fonts exist
-(stub create-glyph-cursor (&key source-font source-char mask-font
-                             (mask-char 0) foreground background))
+(defun create-glyph-cursor (&key source-font source-char
+                              (mask-font source-font)
+                              (mask-char (1+ source-char))
+                              foreground background)
+  (let* ((id (xcb-generate-id (display-ptr-xcb source-font)))
+         (cursor (%make-cursor :display (display-for source-font)
+                               :id id)))
+    (xerr source-font
+        (xcb-create-glyph-cursor-checked (display-ptr-xcb source-font)
+                                         id (xid source-font) (xid mask-font)
+                                         source-char mask-char
+                                         (color-red-int foreground)
+                                         (color-green-int foreground)
+                                         (color-blue-int foreground)
+                                         (color-red-int background)
+                                         (color-green-int background)
+                                         (color-blue-int background)))
+    cursor))
 
 (defun free-cursor (cursor)
   (xerr cursor
